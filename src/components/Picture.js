@@ -5,32 +5,42 @@ class Picture extends Component{
         classes:""
     }
     onDragStart = (ev,id,groupName) => {
-        ev.dataTransfer.setData("id",id)
-        ev.dataTransfer.setData("groupName",groupName)
+        ev.dataTransfer.setData("id",id);
+        ev.dataTransfer.setData("groupName",groupName);
         this.setState({
             classes:"active"
         })
 
     }
-    onDragEnd = () => {
+    onDragEnd = ()=>{
         this.setState({
-            classes:""
+            classes: ""
         })
     }
     render() {
             const {groupName,options} = this.props;
             const {farm,server,id,secret} = options;
-            return (
-                <div
-                        className={this.state.classes}
-                        onDragStart = {(e) => this.onDragStart(e,id,groupName)}
-                        onDragEnd = {this.onDragEnd}
-                        draggable = {this.props.draggable}
+            // console.log(this.props.draggable);
+            if(!this.props.draggable) {
+                return (
+                    <div
                         groupname = {groupName}
                         className={"draggable picture "+this.state.classes}
                         >
-                        <img src = {`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`} />
+                        <img alt={"draggable image: "+id} src = {`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`} />
                     </div>
+                )
+            }
+            return (
+                <div
+                        onDragStart = {(e) => this.onDragStart(e,id,groupName)}
+                        onDragEnd = {this.onDragEnd}
+                        draggable
+                        groupname = {groupName}
+                        className={"draggable picture "+this.state.classes}
+                        >
+                        <img alt={"draggable image: "+id} src = {`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`} />
+                </div>
             )
         }
 }

@@ -14,14 +14,27 @@ class Index extends Component {
     state = {
         catalog: {},
         menuArr:[],
-        activeGroup: null
+        activeGroup: null,
+        text:null
     }
 
     search = text => {
-        let arr = text.split(" ");
+        let splitArr = text.split(" ");
+        let arr = [];
+        splitArr.forEach(text=>{
+            if(text.length > 0) {
+                arr.push(text)
+            }
+        })
+        // console.log(arr)
+        if(text === this.state.text) {
+            return
+        }
         this.setState({
             catalog: {},
-            menuArr:[]
+            menuArr:[],
+            activeGroup: null,
+            text:text
         })
         arr.forEach(text => {            
             fetchPhotos(text)
@@ -34,7 +47,7 @@ class Index extends Component {
                 })
         })
         this.setState({
-            menuArr: [...arr]
+            menuArr: arr
         })
     }   
 
@@ -53,13 +66,13 @@ class Index extends Component {
         })
     }
     render() {
-        console.log(this.state)
+        // console.log(this.state)
         return (
-            <div className="App">
+            <div >
                 <Search search = {this.search} />
                 <Catalog catalog = {this.state.catalog} />
-                <Menu click = {this.click} menuArr = {this.state.menuArr} />
-                <Group delete={this.delete} all = {this.state.catalog} activeGroup = {this.state.activeGroup} />
+                <Menu text={this.state.text} click = {this.click} menuArr = {this.state.menuArr} />
+                <Group text={this.state.text} delete={this.delete} all = {this.state.catalog} activeGroup = {this.state.activeGroup} />
 
             </div>
         );

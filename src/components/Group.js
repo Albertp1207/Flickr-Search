@@ -10,9 +10,34 @@ class Group extends Component {
         classes:""
     }
 
-    onDragOver = (e) => {
-        e.preventDefault() 
+    componentDidUpdate(prevProps) {
+        if(prevProps.text !== this.props.text) {
+            this.setState({
+                groups: [],
+                catalog:{},
+                classes:""
+            })
+        }
+    }
 
+    onDragOver = (e) => {
+        e.preventDefault()         
+        
+    }
+    onDragEnter = (e) => {
+        // if() {
+        //     this.setState({
+        //         classes: "trueG"
+        //     })
+        // } else {
+        //     this.setState({
+        //         classes: "falseG"
+        //     })
+        // }
+
+        this.setState({
+            classes:"activeG"
+        })
     }
     onDragEnd = e => {
         this.setState({
@@ -49,21 +74,19 @@ class Group extends Component {
     makeGroup = () => {
         const groupName = this.props.activeGroup;
         if(!this.state.catalog[groupName]) {
-            return <label>put pictures here</label>
+            return <p>put pictures here</p>
         }
-        return this.state.catalog[groupName].map(el=><Picture key={el.id} draggable={false} groupName = {groupName} options={el}/>)
+        return this.state.catalog[groupName].map(el=><Picture key={el.id +groupName} draggable={false} groupName = {groupName} options={el}/>)
     }
 
     render() {
-        if(!this.props.activeGroup) {
-            return <label>Choose any group</label>
-        }
         return (
-            <div id = "group" className = {this.state.classes}
+            <div id = "group" groupname = {this.props.activeGroup} className = {this.state.classes}
             onDragOver= {(e)=>this.onDragOver(e)}
             onDrop = {(e)=> this.onDrop(e)}
-            onDragLeave = {this.onDragEnd}>
-                {this.makeGroup()}
+            onDragLeave = {this.onDragEnd}
+            onDragEnter = {(e)=>this.onDragEnter(e)}>
+                {this.props.activeGroup ? this.makeGroup() : <p>Choose any group</p>}
             </div>
         )
     }

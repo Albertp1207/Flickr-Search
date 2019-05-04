@@ -10,7 +10,7 @@ const makeCatalog = (catalog) => {
     }
     
     if(res.length === 0) {
-        return <label>Catalog is empty</label>
+        return <p>Catalog is empty</p>
     }
     return res
 }
