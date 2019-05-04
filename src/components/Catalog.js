@@ -1,10 +1,24 @@
 import React from "react"
 import Picture from "./Picture"
+
+const makeCatalog = (catalog) => {
+    let res = []
+    for(let key in catalog) {
+        catalog[key].forEach(el=>{
+            res.push(<Picture key ={el.id} groupName = {key} options={el}/>)
+        })
+    }
+    
+    if(res.length === 0) {
+        return <label>Catalog is empty</label>
+    }
+    return res
+}
+
 export default props => {
     return (
         <div className = "catalog">
-            <Picture groupName = "cat" options={{farm:66,server:65535,id:32819811357,secret:"0d8ced29f1"}}/>
-            <Picture groupName = "cat" options={{farm:66,server:65535,id:32819811357,secret:"0d8ced29f1"}}/>      
+            {makeCatalog(props.catalog)}
         </div>
     )
 }

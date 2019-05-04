@@ -18,6 +18,10 @@ class Index extends Component {
 
     search = text => {
         let arr = text.split(" ");
+        this.setState({
+            catalog: {},
+            menuArr:[]
+        })
         arr.forEach(text => {            
             fetchPhotos(text)
                 .then(data => {
@@ -29,7 +33,7 @@ class Index extends Component {
                 })
         })
         this.setState({
-            menuArr: [...this.state.menuArr,text]
+            menuArr: [...arr]
         })
     }   
     render() {

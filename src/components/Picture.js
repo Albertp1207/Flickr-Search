@@ -10,6 +10,7 @@ class Picture extends Component{
             const {farm,server,id,secret} = options;
             return (
                 <div
+                        
                         onDragStart = {(e) => this.onDragStart(e,id)}
                         draggable
                         groupname = {groupName}

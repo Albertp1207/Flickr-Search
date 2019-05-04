@@ -51,9 +51,9 @@
 .catalog, #group {
   border-top: 1px solid rgb(119, 72, 72);
   border-bottom: 1px solid rgb(119, 72, 72);
-
   padding: 10px;
   display: flex;
+  flex-wrap: wrap;
 }
 .picture {
   margin: 3px;
