@@ -31,3 +31,54 @@
     transform: rotate(360deg);
   }
 }
+
+
+.App {
+  display: flex;
+  flex-direction: column;
+  width: 600px;
+  background-color: rgb(221, 221, 221);
+  margin: 0 auto;
+}
+#search input {
+  width: 70%;
+  margin-right: 2px;
+}
+#search {
+  padding: 5px;
+  margin-bottom: 5px;
+}
+.catalog, #group {
+  border-top: 1px solid rgb(119, 72, 72);
+  border-bottom: 1px solid rgb(119, 72, 72);
+
+  padding: 10px;
+  display: flex;
+}
+.picture {
+  margin: 3px;
+  width: 85px;
+  height: 85px;
+
+}
+.picture img {
+  width: 75px;
+  height: 75px;
+}
+#Menu {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap
+}
+#Menu button {
+  background-color: rgb(113, 97, 255);
+  color: white;
+  font-size: 23px;
+  border-radius: 10px;
+  border: 0;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  width: 165px;
+  height: 90px;
+}
