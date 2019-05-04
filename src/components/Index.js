@@ -13,7 +13,8 @@ function fetchPhotos (text){
 class Index extends Component {
     state = {
         catalog: {},
-        menuArr:[]
+        menuArr:[],
+        activeGroup: null
     }
 
     search = text => {
@@ -36,14 +37,29 @@ class Index extends Component {
             menuArr: [...arr]
         })
     }   
+
+    click = e => {
+        let name = e.target.getAttribute("groupname");
+        this.setState({
+            activeGroup:name
+        })
+    }
+
+    delete = (groupName,i) => {
+        let catalog = Object.assign({},this.state.catalog);
+        catalog[groupName].splice(i,1)
+        this.setState({
+            catalog
+        })
+    }
     render() {
         console.log(this.state)
         return (
             <div className="App">
                 <Search search = {this.search} />
                 <Catalog catalog = {this.state.catalog} />
-                <Menu menuArr = {this.state.menuArr} />
-                <Group />
+                <Menu click = {this.click} menuArr = {this.state.menuArr} />
+                <Group delete={this.delete} all = {this.state.catalog} activeGroup = {this.state.activeGroup} />
 
             </div>
         );

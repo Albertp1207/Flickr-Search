@@ -10,13 +10,11 @@ export default class AppDragDropDemo extends Component {
         ]
     }
     onDragStart = (ev,id) => {
-        console.log("DRSTART",id)
         ev.dataTransfer.setData("id",id)
     }
 
     onDragOver = (ev) => {
         ev.preventDefault()
-        console.log("DXKDXK")
     }
 
     onDrop = (ev,cat) => {

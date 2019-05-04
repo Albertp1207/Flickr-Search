@@ -51,6 +51,7 @@
 .catalog, #group {
   border-top: 1px solid rgb(119, 72, 72);
   border-bottom: 1px solid rgb(119, 72, 72);
+  min-height: 100px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -81,4 +82,14 @@
   margin-bottom: 4px;
   width: 165px;
   height: 90px;
+}
+.trueG {
+  background-color: rgba(0, 128, 0, 0.603);
+}
+
+.falseG {
+  background-color: rgba(255, 0, 0, 0.808);
+}
+.active {
+  opacity: 0.3;
 }

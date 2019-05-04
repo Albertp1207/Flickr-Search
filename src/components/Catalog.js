@@ -5,7 +5,7 @@ const makeCatalog = (catalog) => {
     let res = []
     for(let key in catalog) {
         catalog[key].forEach(el=>{
-            res.push(<Picture key ={el.id} groupName = {key} options={el}/>)
+            res.push(<Picture draggable = {true} key ={el.id} groupName = {key} options={el}/>)
         })
     }
     

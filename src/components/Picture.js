@@ -1,20 +1,33 @@
 import React,{Component} from "react";
 
 class Picture extends Component{
-    onDragStart = (ev,id) => {
-        console.log("DRSTART",id)
+    state = {
+        classes:""
+    }
+    onDragStart = (ev,id,groupName) => {
         ev.dataTransfer.setData("id",id)
+        ev.dataTransfer.setData("groupName",groupName)
+        this.setState({
+            classes:"active"
+        })
+
+    }
+    onDragEnd = () => {
+        this.setState({
+            classes:""
+        })
     }
     render() {
             const {groupName,options} = this.props;
             const {farm,server,id,secret} = options;
             return (
                 <div
-                        
-                        onDragStart = {(e) => this.onDragStart(e,id)}
-                        draggable
+                        className={this.state.classes}
+                        onDragStart = {(e) => this.onDragStart(e,id,groupName)}
+                        onDragEnd = {this.onDragEnd}
+                        draggable = {this.props.draggable}
                         groupname = {groupName}
-                        className="draggable picture"
+                        className={"draggable picture "+this.state.classes}
                         >
                         <img src = {`https://farm${farm}.staticflickr.com/${server}/${id}_${secret}.jpg`} />
                     </div>

@@ -1,16 +1,15 @@
 import React from "react";
 
-const makeMenu = (arr) => {
+const makeMenu = (arr,cl) => {
     if(arr.length === 0) {
         return <label>Menu is empty</label>
     }
-    return arr.map(el => <button key={el} groupname = {el}>{el}</button>)
+    return arr.map(el => <button onClick={cl} key={el} groupname = {el}>{el}</button>)
 }
 export default props => {
-    console.log(props)
     return (
         <div id = "Menu">
-            {makeMenu(props.menuArr)}
+            {makeMenu(props.menuArr,props.click)}
         </div>
     )
 }
