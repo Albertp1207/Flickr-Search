@@ -10,6 +10,10 @@ export default class extends Component  {
         })
     }
     search = () => {
+        if(this.state.text.length === 0) {
+            alert("WRITE TEXT")
+            return
+        }
         this.props.search(this.state.text)
     }
     render (){
